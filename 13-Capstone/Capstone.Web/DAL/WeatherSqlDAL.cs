@@ -30,6 +30,7 @@ namespace Capstone.Web.DAL
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(SQL_Get_Weather_By_Park, conn);
+                    cmd.Parameters.AddWithValue("@parkCode", parkCode);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
