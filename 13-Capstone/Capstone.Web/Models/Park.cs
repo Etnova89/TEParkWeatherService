@@ -10,8 +10,9 @@ namespace Capstone.Web.Models
         public string ParkCode { get; set; }
         public string ParkName { get; set; }
         public string State { get; set; }
-        public string Acreage { get; set; }
+        public int Acreage { get; set; }
         public int ElevationInFeet { get; set; }
+        public int NumberOfCampsites { get; set; }
         public double MilesOfTrail { get; set; }
         public string Climate { get; set; }
         public int YearFounded { get; set; }
