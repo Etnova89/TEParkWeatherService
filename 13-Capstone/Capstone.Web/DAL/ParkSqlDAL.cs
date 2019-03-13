@@ -9,6 +9,7 @@ namespace Capstone.Web.DAL
 {
     public class ParkSqlDAL
     {
+
         private string connectionString;
 
         private const string SQL_Get_Parks = "SELECT * FROM park ORDER BY parkName";
