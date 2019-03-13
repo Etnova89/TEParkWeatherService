@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Capstone.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Capstone.Web.DAL.Interfaces
 {
-    interface IWeatherSqlDAL
+    public interface IWeatherSqlDAL
     {
+        List<Weather> GetWeatherByParkCode(string parkCode);
     }
 }

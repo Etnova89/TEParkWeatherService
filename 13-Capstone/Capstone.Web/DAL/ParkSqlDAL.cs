@@ -1,4 +1,5 @@
-﻿using Capstone.Web.Models;
+﻿using Capstone.Web.DAL.Interfaces;
+using Capstone.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Capstone.Web.DAL
 {
-    public class ParkSqlDAL
+    public class ParkSqlDAL : IParkSqlDAL
     {
 
         private string connectionString;
