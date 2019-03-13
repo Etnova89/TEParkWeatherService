@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Capstone.Web.DAL;
 using Capstone.Web.DAL.Interface;
+using Capstone.Web.DAL.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,6 +36,7 @@ namespace Capstone.Web
             string connectionString = Configuration.GetConnectionString("Default");
 
             services.AddScoped<ISurveySqlDAL, SurveySqlDAL>(c => new SurveySqlDAL(connectionString));
+            services.AddScoped<IParkSqlDAL, ParkSqlDAL>(c => new ParkSqlDAL(connectionString));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
