@@ -7,5 +7,6 @@ namespace Capstone.Web.DAL
 {
     public class ParkSqlDAL
     {
+
     }
 }
