@@ -37,7 +37,7 @@ namespace Capstone.Web.DAL
                     SqlCommand cmd = new SqlCommand(SQL_SubmitSurvey, connection);
                     cmd.Parameters.AddWithValue("@parkCode", survey.ParkCode);
                     cmd.Parameters.AddWithValue("@emailAddress", survey.EmailAddress);
-                    cmd.Parameters.AddWithValue("@state", survey.ParkCode);
+                    cmd.Parameters.AddWithValue("@state", survey.State);
                     cmd.Parameters.AddWithValue("@activityLevel", survey.ActivityLevel);
                     if (cmd.ExecuteNonQuery() > 0)
                     {
