@@ -19,25 +19,22 @@ namespace Capstone.Web.Controllers
             this.weatherSqlDAL = weatherSqlDAL;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult List()
         {
             List<Park> result = parkSqlDAL.GetAllParks();
+
             return View(result);
         }
 
-        public IActionResult Detail(string parkCode)
+        public IActionResult Detail(string id)
         {
             ParkDetailViewModel parkDetailViewModel = new ParkDetailViewModel
             {
-                SelectedPark = parkSqlDAL.GetParkById(parkCode),
-                ParkWeatherForcast = weatherSqlDAL.GetWeatherByParkCode(parkCode)
+                SelectedPark = parkSqlDAL.GetParkById(id),
+                ParkWeatherForcast = weatherSqlDAL.GetWeatherByParkCode(id)
 
             };
+
             return View(parkDetailViewModel);
         }
     }

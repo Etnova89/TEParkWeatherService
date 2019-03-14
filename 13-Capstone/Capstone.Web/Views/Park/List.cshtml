@@ -25,7 +25,7 @@
     {
         <div class="horizontalFlexContainer">
             <div >
-                <img class="image" src="~/images/@(park.ParkCode).jpg" />
+                <a asp-controller="Park" asp-action="Detail" asp-route-id="@park.ParkCode"><img class="image" src="~/images/@(park.ParkCode).jpg" /></a>
             </div>
             <div>
                 <p>@park.ParkName</p>

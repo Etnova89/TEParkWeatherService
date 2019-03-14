@@ -12,7 +12,7 @@ namespace Capstone.Web.DAL
     {
         private string connectionString;
 
-        private const string SQL_Get_Weather_By_Park = "SELECT TOP 5 * FROM weather WHERE parkCode = @parkCode ORDER BY fiveDayForcastValue";
+        private const string SQL_Get_Weather_By_Park = "SELECT TOP 5 * FROM weather WHERE parkCode = @parkCode ORDER BY fiveDayForecastValue";
 
         public WeatherSqlDAL(string connectionString)
         {

@@ -32,6 +32,8 @@ namespace Capstone.Web.DAL
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+                    connection.Open();
+
                     SqlCommand cmd = new SqlCommand(SQL_SubmitSurvey, connection);
                     cmd.Parameters.AddWithValue("@parkCode", survey.ParkCode);
                     cmd.Parameters.AddWithValue("@emailAddress", survey.EmailAddress);
@@ -43,7 +45,7 @@ namespace Capstone.Web.DAL
                     }
                 }
             }
-            catch
+            catch (Exception)
             {
                 throw;
             }
