@@ -11,7 +11,7 @@ namespace Capstone.Web.DAL
     public class SurveySqlDAL : ISurveySqlDAL
     {
         private string connectionString;
-        private string SQL_GetParkSurveyResult = @"SELECT Count(*) AS total_surveys FROM survey_result JOIN park ON park.parkCode = survey_result.parkCode WHERE total_surveys > 0 GROUP BY park.parkCode ORDER BY total_surveys DESC, park.parkName;";
+        private string SQL_GetParkSurveyResult = @"SELECT COUNT(survey_result.parkCode) as total_surveys, survey_result.parkCode, park.parkName FROM survey_result JOIN park ON survey_result.parkCode = park.parkCode GROUP BY survey_result.parkCode, parkName ORDER BY total_surveys DESC, survey_result.parkCode;";
 
         private string SQL_SubmitSurvey = @"INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel) VALUES (@parkCode, @emailAddress, @state, @activityLevel)";
 
@@ -35,10 +35,12 @@ namespace Capstone.Web.DAL
                     while (reader.Read())
                     {
                         ViewParksSurveyViewModel parkSurvey = new ViewParksSurveyViewModel();
+                        Park park = new Park();
                         parkSurvey.NumberOfSurveys = Convert.ToInt32(reader["total_surveys"]);
-                        parkSurvey.Park.ParkName = Convert.ToString(reader["parkName"]);
-                        parkSurvey.Park.ParkCode = Convert.ToString(reader["parkCode"]);
+                        park.ParkName = Convert.ToString(reader["parkName"]);
+                        park.ParkCode = Convert.ToString(reader["parkCode"]);
 
+                        parkSurvey.Park = park;
                         parkSurveyResult.Add(parkSurvey);
                     }
                 }
