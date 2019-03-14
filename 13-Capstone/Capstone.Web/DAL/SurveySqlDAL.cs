@@ -11,7 +11,8 @@ namespace Capstone.Web.DAL
     public class SurveySqlDAL : ISurveySqlDAL
     {
         private string connectionString;
-        private string SQL_GetSurverys = @"";
+        private string SQL_GetParkSurveyResult = @"SELECT Count(*) AS total_surveys FROM survey_result JOIN park ON park.parkCode = survey_result.parkCode WHERE total_surveys > 0 GROUP BY park.parkCode ORDER BY total_surveys DESC, park.parkName;";
+
         private string SQL_SubmitSurvey = @"INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel) VALUES (@parkCode, @emailAddress, @state, @activityLevel)";
 
         public SurveySqlDAL(string connectionString)
@@ -19,10 +20,35 @@ namespace Capstone.Web.DAL
             this.connectionString = connectionString;
         }
 
-        public Survey GetSurvey()
+        public List<ViewParksSurveyViewModel> GetParkSurveyResult()
         {
-            Survey survey = new Survey();
-            return survey;
+            List<ViewParksSurveyViewModel> parkSurveyResult = new List<ViewParksSurveyViewModel>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetParkSurveyResult, connection);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        ViewParksSurveyViewModel parkSurvey = new ViewParksSurveyViewModel();
+                        parkSurvey.NumberOfSurveys = Convert.ToInt32(reader["total_surveys"]);
+                        parkSurvey.Park.ParkName = Convert.ToString(reader["parkName"]);
+                        parkSurvey.Park.ParkCode = Convert.ToString(reader["parkCode"]);
+
+                        parkSurveyResult.Add(parkSurvey);
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+            return parkSurveyResult;
         }
 
         public bool SubmitSurvey(Survey survey)

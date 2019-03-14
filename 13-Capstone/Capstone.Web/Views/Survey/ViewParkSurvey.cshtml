@@ -1,0 +1,59 @@
+﻿@model List<ViewParksSurveyViewModel>
+
+@{
+    ViewData["Title"] = "ViewParkSurvey";
+}
+
+
+<style>
+    #verticalFlexContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .horizontalFlexContainer {
+        display: flex;
+        padding: 20px;
+        border-bottom: 1px solid mistyrose;
+        flex-wrap: wrap;
+    }
+
+    .image {
+        object-fit: contain;
+        max-width: 300px; /*TODO*/
+        padding-right: 40px;
+    }
+
+    .text {
+        align-self: flex-start;
+        max-width: 70%;
+    }
+
+    h3 {
+        margin-top: 0px;
+    }
+
+    .horizontalFlexContainer:last-child {
+        border: hidden;
+    }
+</style>
+
+<h2>ViewParkSurvey</h2>
+
+<div id="verticalFlexContainer">
+    @foreach (ViewParksSurveyViewModel mod in Model)
+    {
+        <div class="horizontalFlexContainer">
+            <div>
+                <a asp-controller="Park" asp-action="Detail" asp-route-id="@(mod.Park.ParkCode)"><img class="image" src="~/images/@(mod.Park.ParkCode).jpg" /></a>
+            </div>
+            <div class="text">
+                <h3>@mod.Park.ParkName</h3>
+            </div>
+            <div>
+                <p>@mod.NumberOfSurveys</p>
+            </div>
+        </div>
+    }
+
+</div>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Capstone.Web.Models
 {
-    public class FormViewModel
+    public class SurveyFormViewModel
     {
         public Survey Survey { get; set; }
         public List<SelectListItem> Parks { get; set; }
@@ -72,12 +72,12 @@ namespace Capstone.Web.Models
             new SelectListItem { Text = "Extremely Active"}
         };
 
-        public FormViewModel(List<Park> parkList)
-        {
-            Parks = GetParksSelectList(parkList);
-        }
+        //public SurveyFormViewModel(List<Park> parkList)
+        //{
+        //    Parks = GetParksSelectList(parkList);
+        //}
 
-        private List<SelectListItem> GetParksSelectList(List<Park> parkList)
+        public List<SelectListItem> GetParksSelectList(List<Park> parkList)
         {
             List<SelectListItem> result = new List<SelectListItem>();
 
@@ -85,7 +85,6 @@ namespace Capstone.Web.Models
             {
                 result.Add(new SelectListItem() { Text = park.ParkName, Value = park.ParkCode });
             }
-
             return result;
         }
 
