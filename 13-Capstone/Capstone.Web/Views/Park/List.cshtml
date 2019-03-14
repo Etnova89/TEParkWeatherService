@@ -10,10 +10,24 @@
     }
     .horizontalFlexContainer{
         display: flex;
+        padding: 20px;
+        border-bottom: 1px solid mistyrose;
+        flex-wrap: wrap;
     }
     .image{
         object-fit:contain;
         max-width:300px; /*TODO*/
+        padding-right: 40px;
+    }
+    .text {
+        align-self: flex-start;
+        max-width: 70%;
+    }
+    h3 {
+        margin-top: 0px;
+    }
+    .horizontalFlexContainer:last-child {
+        border: hidden;
     }
 
 
@@ -24,11 +38,11 @@
     @foreach (Park park in Model)
     {
         <div class="horizontalFlexContainer">
-            <div >
+            <div>
                 <img class="image" src="~/images/@(park.ParkCode).jpg" />
             </div>
-            <div>
-                <p>@park.ParkName</p>
+            <div class="text">
+                <h3>@park.ParkName</h3>
                 <p>@park.ParkDescription</p>
             </div>
         </div>
