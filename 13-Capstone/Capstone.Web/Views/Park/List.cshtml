@@ -38,8 +38,8 @@
     @foreach (Park park in Model)
     {
         <div class="horizontalFlexContainer">
-            <div>
-                <img class="image" src="~/images/@(park.ParkCode).jpg" />
+            <div >
+                <a asp-controller="Park" asp-action="Detail" asp-route-id="@park.ParkCode"><img class="image" src="~/images/@(park.ParkCode).jpg" /></a>
             </div>
             <div class="text">
                 <h3>@park.ParkName</h3>

@@ -4,10 +4,28 @@
     ViewData["Title"] = "Detail";
 }
 
-<style>
+<style> 
 </style>
 
 <div id="parkImage"><img src="~/images/@(Model.SelectedPark.ParkCode).jpg" /></div>
 <div><h1>@Model.SelectedPark.ParkName - @Model.SelectedPark.ParkCode</h1></div>
 <div><p>@Model.SelectedPark.State - @Model.SelectedPark.Acreage</p></div>
 <div><p>@Model.SelectedPark.ParkDescription</p></div>
+<div><p>@Model.SelectedPark.ElevationInFeet</p></div>
+<div><p>@Model.SelectedPark.MilesOfTrail</p></div>
+<div><p>@Model.SelectedPark.NumberOfCampsites</p></div>
+<div><p>@Model.SelectedPark.Climate</p></div>
+<div><p>@Model.SelectedPark.YearFounded</p></div>
+<div><p>@Model.SelectedPark.AnnualVisitorCount</p></div>
+<div><p>@Model.SelectedPark.InspirationalQuote</p></div>
+<div><p>@Model.SelectedPark.InspirationalQuoteSource</p></div>
+<div><p>@Model.SelectedPark.EntryFee</p></div>
+<div><p>@Model.SelectedPark.NumberOfAnimalSpecies</p></div>
+
+
+@*
+TODO:
+    ADD Weather for park if selected
+    ADD Weather C/F selection
+    Look into using javascript for dynamic selection
+*@

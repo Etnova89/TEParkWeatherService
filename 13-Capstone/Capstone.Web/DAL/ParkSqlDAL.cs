@@ -14,7 +14,7 @@ namespace Capstone.Web.DAL
         private string connectionString;
 
         private const string SQL_Get_Parks = "SELECT * FROM park ORDER BY parkName";
-        private const string SQL_Get_Park_By_Id = "SELECT * FROM park WHERE parkCode = @parkCode";
+        private const string SQL_Get_Park_By_Id = @"SELECT * FROM park WHERE parkCode = @parkCode";
 
         public ParkSqlDAL(string connectionString)
         {
@@ -82,9 +82,7 @@ namespace Capstone.Web.DAL
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
-                    {
-                        
-
+                    { 
                         park.ParkCode = Convert.ToString(reader["parkCode"]);
                         park.ParkName = Convert.ToString(reader["parkName"]);
                         park.State = Convert.ToString(reader["state"]);

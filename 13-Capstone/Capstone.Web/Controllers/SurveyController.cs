@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Capstone.Web.DAL;
+using Capstone.Web.DAL.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone.Web.Controllers
 {
     public class SurveyController : Controller
     {
-        public IActionResult Index()
+        private ISurveySqlDAL surveySqlDAL;
+
+        public SurveyController(ISurveySqlDAL surveySqlDAL)
         {
-            return View();
+            this.surveySqlDAL = surveySqlDAL;
         }
 
         public IActionResult Form()
@@ -18,7 +22,7 @@ namespace Capstone.Web.Controllers
             return View();
         }
 
-        public IActionResult Selection()
+        public IActionResult ViewParkSurvey()
         {
             return View();
         }
