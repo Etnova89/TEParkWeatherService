@@ -50,7 +50,7 @@ namespace Capstone.Web.Controllers
             }
             else
             {
-                HttpContext.Session.SetString(USE_C_KEY, null);
+                HttpContext.Session.SetString(USE_C_KEY, "false");
             }
             ParkDetailViewModel parkDetailViewModel = new ParkDetailViewModel
             {

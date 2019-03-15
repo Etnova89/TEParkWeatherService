@@ -72,11 +72,6 @@ namespace Capstone.Web.Models
             new SelectListItem { Text = "Extremely Active"}
         };
 
-        //public SurveyFormViewModel(List<Park> parkList)
-        //{
-        //    Parks = GetParksSelectList(parkList);
-        //}
-
         public List<SelectListItem> GetParksSelectList(List<Park> parkList)
         {
             List<SelectListItem> result = new List<SelectListItem>();
