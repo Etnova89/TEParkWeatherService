@@ -4,28 +4,90 @@
     ViewData["Title"] = "Detail";
 }
 
-<style> 
+<style>
+    #flexContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #parkImage {
+        width: 100%;
+    }
+
+    #parkName {
+        align-self: center;
+    }
+
+    #state {
+        align-self: center;
+    }
+
+    #quote {
+        align-self: center;
+    }
+
+    #quoteSource {
+        align-self: center;
+    }
+
+    #description {
+        text-align: center;
+    }
+
+    #table {
+        align-self: center;
+    }
 </style>
 
-<div id="parkImage"><img src="~/images/@(Model.SelectedPark.ParkCode).jpg" /></div>
-<div><h1>@Model.SelectedPark.ParkName - @Model.SelectedPark.ParkCode</h1></div>
-<div><p>@Model.SelectedPark.State - @Model.SelectedPark.Acreage</p></div>
-<div><p>@Model.SelectedPark.ParkDescription</p></div>
-<div><p>@Model.SelectedPark.ElevationInFeet</p></div>
-<div><p>@Model.SelectedPark.MilesOfTrail</p></div>
-<div><p>@Model.SelectedPark.NumberOfCampsites</p></div>
-<div><p>@Model.SelectedPark.Climate</p></div>
-<div><p>@Model.SelectedPark.YearFounded</p></div>
-<div><p>@Model.SelectedPark.AnnualVisitorCount</p></div>
-<div><p>@Model.SelectedPark.InspirationalQuote</p></div>
-<div><p>@Model.SelectedPark.InspirationalQuoteSource</p></div>
-<div><p>@Model.SelectedPark.EntryFee</p></div>
-<div><p>@Model.SelectedPark.NumberOfAnimalSpecies</p></div>
+<div id="flexContainer">
+
+    <div><img id="parkImage" src="~/images/@(Model.SelectedPark.ParkCode).jpg" /></div>
+    <div id="parkName"><h1>@Model.SelectedPark.ParkName</h1></div>
+    <div id="quote"><p><i>"@Model.SelectedPark.InspirationalQuote"</i></p></div>
+    <div id="quoteSource"><p>-@Model.SelectedPark.InspirationalQuoteSource</p></div>
+    <div id="state"><h3>Established in @Model.SelectedPark.YearFounded, in the beautiful state of @Model.SelectedPark.State</h3></div>
+    <div><p id="description">@Model.SelectedPark.ParkDescription</p></div>
+
+    <div id="table">
+
+        <table>
+            <thead>
+                <tr>
+                    <td>Acreage</td>
+                    <td>Elevation</td>
+                    <td>Miles of Trail</td>
+                    <td>Number of Campsites</td>
+                    <td>Climate</td>
+                    <td>Annual Visitors</td>
+                    <td>Entry Fee</td>
+                    <td>Number of Species</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.SelectedPark.Acreage</td>
+                    <td>@Model.SelectedPark.ElevationInFeet</td>
+                    <td>@Model.SelectedPark.MilesOfTrail</td>
+                    <td>@Model.SelectedPark.NumberOfCampsites</td>
+                    <td>@Model.SelectedPark.Climate</td>
+                    <td>@Model.SelectedPark.AnnualVisitorCount</td>
+                    <td>@Model.SelectedPark.EntryFee</td>
+                    <td>@Model.SelectedPark.NumberOfAnimalSpecies</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+
 
 
 @*
-TODO:
-    ADD Weather for park if selected
-    ADD Weather C/F selection
-    Look into using javascript for dynamic selection
+    TODO:
+        ADD Weather for park if selected
+        ADD Weather C/F selection
+        Look into using javascript for dynamic selection
 *@
