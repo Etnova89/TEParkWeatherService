@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Capstone.Web.DAL
 {
-    public class FakeSurveySqlDAL : ISurveySqlDAL
+    public class MockSurveySqlDAL : ISurveySqlDAL
     {
         public List<ViewParksSurveyViewModel> GetParkSurveyResult()
         {

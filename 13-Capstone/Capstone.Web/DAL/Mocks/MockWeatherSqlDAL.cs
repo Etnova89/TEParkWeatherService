@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Capstone.Web.DAL
 {
-    public class FakeWeatherSqlDAL : IWeatherSqlDAL
+    public class MockWeatherSqlDAL : IWeatherSqlDAL
     {
         public List<Weather> GetWeatherByParkCode(string parkCode)
         {

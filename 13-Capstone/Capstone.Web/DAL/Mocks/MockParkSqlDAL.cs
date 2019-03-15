@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Capstone.Web.DAL
 {
-    public class FakeParkSqlDAL : IParkSqlDAL
+    public class MockParkSqlDAL : IParkSqlDAL
     {
         public List<Park> GetAllParks()
         {
