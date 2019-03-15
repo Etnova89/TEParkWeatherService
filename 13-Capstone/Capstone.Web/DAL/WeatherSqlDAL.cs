@@ -43,6 +43,7 @@ namespace Capstone.Web.DAL
                         weather.High = Convert.ToInt32(reader["high"]);
                         weather.Forecast = Convert.ToString(reader["forecast"]);
 
+                        weatherList.Add(weather);
                     }
                 }
             }
