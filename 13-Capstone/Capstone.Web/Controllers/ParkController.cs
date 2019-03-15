@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Capstone.Web.DAL.Interfaces;
 using Capstone.Web.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Capstone.Web.Extensions;
 
 namespace Capstone.Web.Controllers
 {
@@ -12,6 +14,7 @@ namespace Capstone.Web.Controllers
     {
         private IParkSqlDAL parkSqlDAL;
         private IWeatherSqlDAL weatherSqlDAL;
+        private const string USE_C_KEY = "USE_C_KEY";
 
         public ParkController(IParkSqlDAL parkSqlDAL, IWeatherSqlDAL weatherSqlDAL)
         {
@@ -35,6 +38,19 @@ namespace Capstone.Web.Controllers
             };
 
             return View(parkDetailViewModel);
+        }
+
+        public IActionResult DetailInC(string id)
+        {
+            HttpContext.Session.SetString(USE_C_KEY, "true");
+            ViewBag.UseC = Session[USE_C_KEY];
+            ParkDetailViewModel parkDetailViewModel = new ParkDetailViewModel
+            {
+                SelectedPark = parkSqlDAL.GetParkById(id),
+                ParkWeatherForecast = weatherSqlDAL.GetWeatherByParkCode(id)
+            };
+
+            return RedirectToAction(nameof(Detail));
         }
     }
 }

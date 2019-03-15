@@ -37,6 +37,35 @@
     #table {
         align-self: center;
     }
+
+    #weatherFlexContainer {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .futureWeatherImages {
+        width: 150px;
+    }
+
+    .futureWeatherCells {
+        align-self: center;
+        padding: 15px;
+    }
+
+    #weatherFlexContainer div:nth-child(2) {
+        margin-left: auto;
+    }
+
+    #todaysDate {
+        text-align: center;
+    }
+
+    td {
+        border: solid 3px black;
+        padding: 10px;
+        text-align: center;
+    }
+
 </style>
 
 <div id="flexContainer">
@@ -82,37 +111,46 @@
 
 
 
+<button value="Use Celcius" asp-controller="Park" asp-action="DetailInC"/>
 
 
-
-<div>
+<div id="weatherFlexContainer">
     @for (int i = 0; i < Model.ParkWeatherForecast.Count; i++)
     {
         if (i == 0)
         {
-            <div>
-                <h1>@System.DateTime.Now.ToShortDateString()</h1>
-                <img src="~/images/@(Model.ParkWeatherForecast[i].Forecast).png" />
-                <p>High @Model.ParkWeatherForecast[i].ConvertToC(@Model.ParkWeatherForecast[i].High)</p>
-                <span>Low @Model.ParkWeatherForecast[i].Low</span>
-                @if (!string.IsNullOrEmpty(Model.ParkWeatherForecast[i].GetForecastMessage()))
-                {
-                    <p>@Model.ParkWeatherForecast[i].GetForecastMessage()</p>
-                }
-                @if ((Model.ParkWeatherForecast[i].GetTemperatureMessages()).Count > 0)
-                {
-                    foreach (string message in Model.ParkWeatherForecast[i].GetTemperatureMessages())
-                    {
-                        <p>@message</p>
-                    }
-                }
-            </div>
+    <div class="todaysWeatherCell">
+        <h1 id="todaysDate">@System.DateTime.Now.ToShortDateString()</h1>
+        <img src="~/images/@(Model.ParkWeatherForecast[i].Forecast).png" />
+        @if (Session["USE_C_KEY"] == "true")
+        {
+            <p>High @Model.ParkWeatherForecast[i].High</p>
+            <span>Low @Model.ParkWeatherForecast[i].Low</span>
+
+        }
+        else
+        {
+            <p>High @Model.ParkWeatherForecast[i].High</p>
+            <span>Low @Model.ParkWeatherForecast[i].Low</span>
+        }
+        @if (!string.IsNullOrEmpty(Model.ParkWeatherForecast[i].GetForecastMessage()))
+        {
+            <p>@Model.ParkWeatherForecast[i].GetForecastMessage()</p>
+        }
+        @if ((Model.ParkWeatherForecast[i].GetTemperatureMessages()).Count > 0)
+        {
+            foreach (string message in Model.ParkWeatherForecast[i].GetTemperatureMessages())
+            {
+                <p>@message</p>
+            }
+        }
+    </div>
         }
 
         else
         {
-            <div>
-                <img src="~/images/@(Model.ParkWeatherForecast[i].Forecast).png" />
+            <div class="futureWeatherCells">
+                <img class="futureWeatherImages" src="~/images/@(Model.ParkWeatherForecast[i].Forecast).png" />
                 <p>High @Model.ParkWeatherForecast[i].High</p>
                 <span>Low @Model.ParkWeatherForecast[i].Low</span>
             </div>
