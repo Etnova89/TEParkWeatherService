@@ -11,9 +11,9 @@ namespace Capstone.Web.DAL
     public class SurveySqlDAL : ISurveySqlDAL
     {
         private string connectionString;
-        private string SQL_GetParkSurveyResult = @"SELECT COUNT(survey_result.parkCode) as total_surveys, survey_result.parkCode, park.parkName FROM survey_result JOIN park ON survey_result.parkCode = park.parkCode GROUP BY survey_result.parkCode, parkName ORDER BY total_surveys DESC, survey_result.parkCode;";
+        private const string SQL_GetParkSurveyResult = @"SELECT COUNT(survey_result.parkCode) as total_surveys, survey_result.parkCode, park.parkName FROM survey_result JOIN park ON survey_result.parkCode = park.parkCode GROUP BY survey_result.parkCode, parkName ORDER BY total_surveys DESC, survey_result.parkCode;";
 
-        private string SQL_SubmitSurvey = @"INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel) VALUES (@parkCode, @emailAddress, @state, @activityLevel)";
+        private const string SQL_SubmitSurvey = @"INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel) VALUES (@parkCode, @emailAddress, @state, @activityLevel)";
 
         public SurveySqlDAL(string connectionString)
         {
