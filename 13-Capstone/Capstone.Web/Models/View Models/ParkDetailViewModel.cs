@@ -8,6 +8,6 @@ namespace Capstone.Web.Models
     public class ParkDetailViewModel
     {
         public Park SelectedPark { get; set; }
-        public List<Weather> ParkWeatherForcast { get; set; }
+        public List<Weather> ParkWeatherForecast { get; set; }
     }
 }

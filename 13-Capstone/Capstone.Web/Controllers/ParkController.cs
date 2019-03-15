@@ -31,8 +31,7 @@ namespace Capstone.Web.Controllers
             ParkDetailViewModel parkDetailViewModel = new ParkDetailViewModel
             {
                 SelectedPark = parkSqlDAL.GetParkById(id),
-                ParkWeatherForcast = weatherSqlDAL.GetWeatherByParkCode(id)
-
+                ParkWeatherForecast = weatherSqlDAL.GetWeatherByParkCode(id)
             };
 
             return View(parkDetailViewModel);

@@ -85,6 +85,41 @@
 
 
 
+<div>
+    @for (int i = 0; i < Model.ParkWeatherForecast.Count; i++)
+    {
+        if (i == 0)
+        {
+            <div>
+                <h1>@System.DateTime.Now.ToShortDateString()</h1>
+                <img src="~/images/@(Model.ParkWeatherForecast[i].Forecast).png" />
+                <p>High @Model.ParkWeatherForecast[i].ConvertToC(@Model.ParkWeatherForecast[i].High)</p>
+                <span>Low @Model.ParkWeatherForecast[i].Low</span>
+                @if (!string.IsNullOrEmpty(Model.ParkWeatherForecast[i].GetForecastMessage()))
+                {
+                    <p>@Model.ParkWeatherForecast[i].GetForecastMessage()</p>
+                }
+                @if ((Model.ParkWeatherForecast[i].GetTemperatureMessages()).Count > 0)
+                {
+                    foreach (string message in Model.ParkWeatherForecast[i].GetTemperatureMessages())
+                    {
+                        <p>@message</p>
+                    }
+                }
+            </div>
+        }
+
+        else
+        {
+            <div>
+                <img src="~/images/@(Model.ParkWeatherForecast[i].Forecast).png" />
+                <p>High @Model.ParkWeatherForecast[i].High</p>
+                <span>Low @Model.ParkWeatherForecast[i].Low</span>
+            </div>
+        }
+    }
+</div>
+
 @*
     TODO:
         ADD Weather for park if selected
