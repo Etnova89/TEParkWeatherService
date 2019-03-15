@@ -9,14 +9,47 @@ namespace Capstone.Web.DAL
 {
     public class FakeSurveySqlDAL : ISurveySqlDAL
     {
-        public Survey GetSurvey()
+        public List<ViewParksSurveyViewModel> GetParkSurveyResult()
         {
-            throw new NotImplementedException();
+            List<ViewParksSurveyViewModel> viewModelList = new List<ViewParksSurveyViewModel>
+            {
+                new ViewParksSurveyViewModel
+                {
+                    Park = new Park
+                    {
+                        ParkCode = "EEE",
+                        ParkName = "Echo",
+                    },
+                    NumberOfSurveys = 100
+                },
+
+                new ViewParksSurveyViewModel
+                {
+                    Park = new Park
+                    {
+                        ParkCode = "FFF",
+                        ParkName = "Foxtrot",
+                    },
+                    NumberOfSurveys = 10
+                },
+
+                new ViewParksSurveyViewModel
+                {
+                    Park = new Park
+                    {
+                        ParkCode = "GGG",
+                        ParkName = "Golf",
+                    },
+                    NumberOfSurveys = 1
+                }
+            };
+
+            return viewModelList;
         }
 
         public bool SubmitSurvey(Survey survey)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
