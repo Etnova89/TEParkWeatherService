@@ -22,20 +22,22 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Form()
+        public IActionResult SurveyForm()
         {
-            FormViewModel model = new FormViewModel(parkSqlDAL.GetAllParks());
+            SurveyFormViewModel model = new SurveyFormViewModel();
+            model.Parks = model.GetParksSelectList(parkSqlDAL.GetAllParks());
+
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Form(Survey model)
+        public IActionResult SurveyForm(SurveyFormViewModel model)
         {
 
             if (ModelState.IsValid)
             {
-                if (surveySqlDAL.SubmitSurvey(model))
+                if (surveySqlDAL.SubmitSurvey(model.Survey))
                 {
                     TempData["SHOW_MESSAGE_KEY"] = true;
                     return RedirectToAction(nameof(ViewParkSurvey));
@@ -46,7 +48,9 @@ namespace Capstone.Web.Controllers
 
         public IActionResult ViewParkSurvey()
         {
-            return View();
+            List<ViewParksSurveyViewModel> model = new List<ViewParksSurveyViewModel>(surveySqlDAL.GetParkSurveyResult());
+
+            return View(model);
         }
 
     }

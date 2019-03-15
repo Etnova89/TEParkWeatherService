@@ -8,7 +8,7 @@ namespace Capstone.Web.DAL.Interface
 {
     public interface ISurveySqlDAL
     {
-        Survey GetSurvey();
+        List<ViewParksSurveyViewModel> GetParkSurveyResult();
         bool SubmitSurvey(Survey survey);
     }
 }
