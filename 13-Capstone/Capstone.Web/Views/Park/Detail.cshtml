@@ -1,4 +1,5 @@
-﻿@model Capstone.Web.Models.ParkDetailViewModel
+﻿@using Microsoft.AspNetCore.Http;
+@model Capstone.Web.Models.ParkDetailViewModel
 
 @{
     ViewData["Title"] = "Detail";
@@ -65,7 +66,6 @@
         padding: 10px;
         text-align: center;
     }
-
 </style>
 
 <div id="flexContainer">
@@ -110,49 +110,65 @@
 </div>
 
 
+@if (Context.Session.GetString("USE_C_KEY") as string == null || Context.Session.GetString("USE_C_KEY") as string == "false")
+{
+    <a asp-action="DetailTempModify" asp-route-id="@(Model.SelectedPark.ParkCode)">Use Celcius</a>
+}
+else
+{
+    <a asp-action="DetailTempModify" asp-route-id="@(Model.SelectedPark.ParkCode)">Use Farenheit</a>
+}
 
-<button value="Use Celcius" asp-controller="Park" asp-action="DetailInC"/>
-
-
+@{
+    string useC = Context.Session.GetString("USE_C_KEY") as string;
+    useC = (string.IsNullOrEmpty(useC) ? string.Empty : useC);
+}
 <div id="weatherFlexContainer">
     @for (int i = 0; i < Model.ParkWeatherForecast.Count; i++)
     {
         if (i == 0)
         {
-    <div class="todaysWeatherCell">
-        <h1 id="todaysDate">@System.DateTime.Now.ToShortDateString()</h1>
-        <img src="~/images/@(Model.ParkWeatherForecast[i].Forecast).png" />
-        @if (Session["USE_C_KEY"] == "true")
-        {
-            <p>High @Model.ParkWeatherForecast[i].High</p>
-            <span>Low @Model.ParkWeatherForecast[i].Low</span>
-
-        }
-        else
-        {
-            <p>High @Model.ParkWeatherForecast[i].High</p>
-            <span>Low @Model.ParkWeatherForecast[i].Low</span>
-        }
-        @if (!string.IsNullOrEmpty(Model.ParkWeatherForecast[i].GetForecastMessage()))
-        {
-            <p>@Model.ParkWeatherForecast[i].GetForecastMessage()</p>
-        }
-        @if ((Model.ParkWeatherForecast[i].GetTemperatureMessages()).Count > 0)
-        {
-            foreach (string message in Model.ParkWeatherForecast[i].GetTemperatureMessages())
-            {
-                <p>@message</p>
-            }
-        }
-    </div>
+            <div class="todaysWeatherCell">
+                <h1 id="todaysDate">@System.DateTime.Now.ToShortDateString()</h1>
+                <img src="~/images/@(Model.ParkWeatherForecast[i].Forecast).png" />
+                @if (useC == "true")
+                {
+                    <p>High @Model.ParkWeatherForecast[i].ConvertToC(Model.ParkWeatherForecast[i].High)</p>
+                    <span>Low @Model.ParkWeatherForecast[i].ConvertToC(Model.ParkWeatherForecast[i].Low)</span>
+                }
+                else
+                {
+                    <p>High @Model.ParkWeatherForecast[i].High</p>
+                    <span>Low @Model.ParkWeatherForecast[i].Low</span>
+                }
+                @if (!string.IsNullOrEmpty(Model.ParkWeatherForecast[i].GetForecastMessage()))
+                {
+                    <p>@Model.ParkWeatherForecast[i].GetForecastMessage()</p>
+                }
+                @if ((Model.ParkWeatherForecast[i].GetTemperatureMessages()).Count > 0)
+                {
+                    foreach (string message in Model.ParkWeatherForecast[i].GetTemperatureMessages())
+                    {
+                        <p>@message</p>
+                    }
+                }
+            </div>
         }
 
         else
         {
             <div class="futureWeatherCells">
                 <img class="futureWeatherImages" src="~/images/@(Model.ParkWeatherForecast[i].Forecast).png" />
-                <p>High @Model.ParkWeatherForecast[i].High</p>
-                <span>Low @Model.ParkWeatherForecast[i].Low</span>
+                @if (useC == "true")
+                {
+                    <p>High @Model.ParkWeatherForecast[i].ConvertToC(Model.ParkWeatherForecast[i].High)</p>
+                    <span>Low @Model.ParkWeatherForecast[i].ConvertToC(Model.ParkWeatherForecast[i].Low)</span>
+                }
+                else
+                {
+                    <p>High @Model.ParkWeatherForecast[i].High</p>
+                    <span>Low @Model.ParkWeatherForecast[i].Low</span>
+                }
             </div>
         }
     }
