@@ -36,23 +36,24 @@ namespace Capstone.Web.DAL
 
                     while (reader.Read())
                     {
-                        Park park = new Park();
-
-                        park.ParkCode = Convert.ToString(reader["parkCode"]);
-                        park.ParkName = Convert.ToString(reader["parkName"]);
-                        park.State = Convert.ToString(reader["state"]);
-                        park.Acreage = Convert.ToInt32(reader["acreage"]);
-                        park.ElevationInFeet = Convert.ToInt32(reader["elevationInFeet"]);
-                        park.MilesOfTrail = Convert.ToDouble(reader["milesOfTrail"]);
-                        park.NumberOfCampsites = Convert.ToInt32(reader["numberOfCampsites"]);
-                        park.Climate = Convert.ToString(reader["climate"]);
-                        park.YearFounded = Convert.ToInt32(reader["yearFounded"]);
-                        park.AnnualVisitorCount = Convert.ToInt32(reader["annualVisitorCount"]);
-                        park.InspirationalQuote = Convert.ToString(reader["inspirationalQuote"]);
-                        park.InspirationalQuoteSource = Convert.ToString(reader["inspirationalQuoteSource"]);
-                        park.ParkDescription = Convert.ToString(reader["parkDescription"]);
-                        park.EntryFee = Convert.ToInt32(reader["entryFee"]);
-                        park.NumberOfAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"]);
+                        Park park = new Park
+                        {
+                            ParkCode = Convert.ToString(reader["parkCode"]),
+                            ParkName = Convert.ToString(reader["parkName"]),
+                            State = Convert.ToString(reader["state"]),
+                            Acreage = Convert.ToInt32(reader["acreage"]),
+                            ElevationInFeet = Convert.ToInt32(reader["elevationInFeet"]),
+                            MilesOfTrail = Convert.ToDouble(reader["milesOfTrail"]),
+                            NumberOfCampsites = Convert.ToInt32(reader["numberOfCampsites"]),
+                            Climate = Convert.ToString(reader["climate"]),
+                            YearFounded = Convert.ToInt32(reader["yearFounded"]),
+                            AnnualVisitorCount = Convert.ToInt32(reader["annualVisitorCount"]),
+                            InspirationalQuote = Convert.ToString(reader["inspirationalQuote"]),
+                            InspirationalQuoteSource = Convert.ToString(reader["inspirationalQuoteSource"]),
+                            ParkDescription = Convert.ToString(reader["parkDescription"]),
+                            EntryFee = Convert.ToInt32(reader["entryFee"]),
+                            NumberOfAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"])
+                        };
 
                         parkList.Add(park);
                     }
