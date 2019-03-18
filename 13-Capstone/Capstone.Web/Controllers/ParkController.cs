@@ -44,6 +44,7 @@ namespace Capstone.Web.Controllers
 
         public IActionResult DetailTempModify(string id)
         {
+            string test = HttpContext.Session.GetString(USE_C_KEY) as string;
             if (HttpContext.Session.GetString(USE_C_KEY) as string == null || HttpContext.Session.GetString(USE_C_KEY) as string == "false")
             {
                 HttpContext.Session.SetString(USE_C_KEY, "true");
