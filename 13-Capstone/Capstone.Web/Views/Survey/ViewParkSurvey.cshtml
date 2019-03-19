@@ -33,14 +33,30 @@
         margin-top: 0px;
     }
 
+    .horizontalFlexContainer {
+        justify-content: space-between;
+    }
+
     .horizontalFlexContainer:last-child {
         border: hidden;
+        
+    }
+
+    #placeholder {
+        width: 300px;
     }
 </style>
 
 <h2>Park Survey Results</h2>
 
 <div id="verticalFlexContainer">
+
+    <div class="horizontalFlexContainer">
+        <h2 id="placeholder"></h2>
+        <h2>Park Name</h2>
+        <h2>Votes</h2>
+    </div>
+
     @foreach (ViewParksSurveyViewModel mod in Model)
     {
         <div class="horizontalFlexContainer">
@@ -51,7 +67,7 @@
                 <h3>@mod.Park.ParkName</h3>
             </div>
             <div>
-                <p>@mod.NumberOfSurveys</p>
+                <h3>@mod.NumberOfSurveys</h3>
             </div>
         </div>
     }
